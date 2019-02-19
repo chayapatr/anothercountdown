@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300');
+
+body {
+    font-family: 'Lato', sans-serif;
+    height: calc(100vh - 8vh);
+    width: calc(100vw - 8vh);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 4vh solid pink;
+}
+
+#object {
+    margin: 2vh;
+    font-size: 2rem;
+}
