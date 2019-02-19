@@ -15,14 +15,21 @@
   ref.on('value', snap => {
     for(i=0; i<100; i++) window.clearInterval(i);
     setInterval(() => {
-      let text = ''
-      Object.values(snap.val()).forEach(el => {
-        text = text + `${el.name}: <br/>${updateTime(el.time)} <br /><hr />`
+      document.getElementById('object').innerHTML = ''
+      let arr = Object.values(snap.val()).concat().sort(sortBy("time"))
+      arr.forEach(el => {
+        let d = document.createElement('div')
+        d.classList.add('block')
+        d.innerHTML = `${el.name}: <br/>${updateTime(el.time)}`
+        document.getElementById('object').appendChild(d)
       })
-      domObject.innerHTML = text
     },1000)
   })
 })()
+
+const sortBy = (key) => {
+  return (a, b) => (a[key] > b[key]) ? 1 : ((b[key] > a[key]) ? -1 : 0);
+};
 
 let updateTime = el => {
   let countdown = Math.floor((el - Date.now()) / 1000);

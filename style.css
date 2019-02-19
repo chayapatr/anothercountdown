@@ -1,17 +1,57 @@
-@import url('https://fonts.googleapis.com/css?family=Lato:300');
+@import url('https://fonts.googleapis.com/css?family=Lato');
 
 body {
     font-family: 'Lato', sans-serif;
-    height: calc(100vh - 8vh);
-    width: calc(100vw - 8vh);
+    font-weight: bold;
+    height: calc(100vh - 6vh);
+    width: calc(100vw - 6vh);
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 4vh solid pink;
+    border: 3vh solid pink;
 }
 
 #object {
-    margin: 2vh;
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+    flex-wrap: wrap;
     font-size: 2rem;
 }
+
+#title{
+    font-size: 5vh;
+}
+
+.block{
+    font-size: 4vh;
+    padding: 7vh;
+    margin: 2vh;
+    border: 0.3vh solid grey;
+    border-radius: 3vh;
+    box-shadow: 1vh 1vh 2vh -1vh rgba(0,0,0,0.4);
+}
+
+@media only screen and (max-width: 500px){
+    #object{
+        flex-direction: column
+    }
+    .block{
+        border-radius: 1vh;
+        padding: 4vh;
+    }
+}
+/*.block {
+    font-size: 4vh;
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+    background: lightgrey;
+    box-shadow: 3vh solid;
+    border-radius: 1vh;
+    width: 30vw;
+    height: 30vh;
+}*/
