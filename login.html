@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="googleSignin()">Google Signin</button>
+    <button onclick="googleSignout()">Google Signout</button>
+</body>
+<script src="https://www.gstatic.com/firebasejs/5.0.0/firebase.js"></script>
+<script>
+    (function () {
+        console.log("start")
+        var config = {
+            apiKey: "AIzaSyCsTv1HOUA3wm90QZzAdpg5t6Jk7sUQ2gI",
+            authDomain: "login-test-bf2f6.firebaseapp.com",
+            databaseURL: "https://login-test-bf2f6.firebaseio.com",
+            projectId: "login-test-bf2f6",
+            storageBucket: "login-test-bf2f6.appspot.com",
+            messagingSenderId: "570341911234"
+        };
+        firebase.initializeApp(config);
+    })()
+
+    var provider = new firebase.auth.GoogleAuthProvider();
+
+    function googleSignin() {
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                console.log("already signin")
+            } else {
+                firebase.auth()
+                    .signInWithPopup(provider).then(function (result) {
+                        var token = result.credential.accessToken;
+                        var user = result.user;
+                        console.log(user.uid)
+                        console.log(token)
+                        console.log(user)
+                        firebase.database().child()
+                    }).catch(function (error) {
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+                        console.log(error.code)
+                        console.log(error.message)
+                    });
+            }
+        });
+    }
+
+    function googleSignout() {
+        firebase.auth().signOut()
+            .then(function () {
+                console.log('Signout Succesfull')
+            }, function (error) {
+                console.log('Signout Failed')
+            });
+    }
+</script>
+
+</html>

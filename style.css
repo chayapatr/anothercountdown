@@ -3,13 +3,15 @@
 body {
     font-family: 'Lato', sans-serif;
     font-weight: bold;
-    height: calc(100vh - 6vh);
+    min-height: calc(100vh - 6vh);
     width: calc(100vw - 6vh);
-    text-align: center;
     display: flex;
+    text-align: center;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     border: 3vh solid pink;
+    overflow-x: hidden;
 }
 
 #object {
@@ -25,12 +27,18 @@ body {
 }
 
 .block{
+    height: 20vh;
+    width: 20vh;
     font-size: 4vh;
     padding: 7vh;
     margin: 2vh;
     border: 0.3vh solid grey;
     border-radius: 3vh;
     box-shadow: 1vh 1vh 2vh -1vh rgba(0,0,0,0.4);
+}
+
+.block > .login {
+    background-color: red;
 }
 
 @media only screen and (max-width: 500px){
@@ -42,16 +50,3 @@ body {
         padding: 4vh;
     }
 }
-/*.block {
-    font-size: 4vh;
-    display: flex;
-    flex-direction: column;
-    justify-self: center;
-    align-self: center;
-    text-align: center;
-    background: lightgrey;
-    box-shadow: 3vh solid;
-    border-radius: 1vh;
-    width: 30vw;
-    height: 30vh;
-}*/

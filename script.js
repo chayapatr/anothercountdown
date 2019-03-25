@@ -18,11 +18,13 @@
       document.getElementById('object').innerHTML = ''
       let arr = Object.values(snap.val()).concat().sort(sortBy("time"))
       arr.forEach(el => {
-        let d = document.createElement('div')
-        d.classList.add('block')
-        d.innerHTML = `${el.name}: <br/>${updateTime(el.time)}`
-        document.getElementById('object').appendChild(d)
-      })
+        if(el.time <= 0){
+          database.ref().child('time').child(el.name).remove()
+        }else{
+          createElement('object', 'div', ['block'], `${el.name}: <br/>${updateTime(el.time)}`)
+      }
+    })
+    createElement('object', 'div', ['block', 'add'], 'login')
     },1000)
   })
 })()
@@ -30,6 +32,13 @@
 const sortBy = (key) => {
   return (a, b) => (a[key] > b[key]) ? 1 : ((b[key] > a[key]) ? -1 : 0);
 };
+
+const createElement = (object, type, classAdd, innerText) => {
+  d = document.createElement(type)
+  d.classList.add(...classAdd)
+  d.innerHTML = innerText
+  document.getElementById(object).appendChild(d)
+}
 
 let updateTime = el => {
   let countdown = Math.floor((el - Date.now()) / 1000);
